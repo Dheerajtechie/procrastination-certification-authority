@@ -2,37 +2,46 @@
 
 > Zero outcomes. Maximum paperwork.
 
-A fully working parody application for the GDG MAD **Dumb Ideas Challenge**. It investigates procrastination, calculates a mathematically questionable score, routes a case through a fake approval workflow, and issues a downloadable certificate for accomplishing absolutely nothing.
+A working parody app for the GDG MAD **Dumb Ideas Challenge**. It investigates procrastination, calculates a mathematically questionable score, runs a fake approval workflow, and issues a printable certificate for accomplishing absolutely nothing.
 
-## Run it
+## Run locally
 
 **No build step, dependencies, API keys, or backend required.**
 
 1. Clone or download this repository.
-2. Open \`index.html\` in a modern browser.
-3. Fill in Form PCA-404 and submit it.
-4. Issue and download your certificate.
-
-You can also deploy it as a static site using GitHub Pages, Netlify, or Vercel. On GitHub, go to **Settings → Pages**, choose **Deploy from a branch**, select \`main\` and \`/(root)\`, then save.
+2. Open `index.html` in a modern browser.
+3. Complete Form PCA-27-B and submit.
+4. Review your case, view the certificate, and use **Print / Save PDF** to save it.
 
 ## Features
 
-- Responsive, dark bureaucratic dashboard with fictional official styling.
-- Working form validation and deterministic score calculation.
-- Fictional classifications and case IDs.
-- Four-step mock investigation/approval workflow.
-- Certificate preview, SVG download, and browser print / Save as PDF.
-- Local browser case archive using \`localStorage\`.
-- Export archive as JSON and clear local evidence.
+- Responsive dark interface with fictional government-style bureaucracy.
+- Working form validation and score calculation.
+- Random excuse generator.
+- Fictional case IDs, classifications, report text, and approval workflow.
+- Certificate preview and print / Save as PDF.
+- Local case history stored in the browser with `localStorage`.
+- Fake appeals workflow with interactive responses.
 - No tracking, external services, API keys, or network calls required.
+
+## Deploy with GitHub Pages
+
+1. Open this repository on GitHub.
+2. Go to **Settings → Pages**.
+3. Under **Build and deployment**, select **Deploy from a branch**.
+4. Choose branch `main` and folder `/(root)`, then click **Save**.
+5. After deployment completes, your site should be available at:
+   https://dheerajtechie.github.io/procrastination-certification-authority/
+
+If you choose GitHub Actions instead, use a static-site Pages workflow configured for this repository.
 
 ## Technology
 
-Vanilla HTML, CSS, and JavaScript. This is intentionally a single-file application so it can be launched immediately and reliably during a demo.
+Vanilla HTML, CSS, and JavaScript. The application is intentionally self-contained so it can be launched immediately during a live demo.
 
 ## Disclaimer
 
-P.C.A. is a fictional parody and is not affiliated with any government agency. Scores and certificates are for entertainment only. Cases are stored in the current browser, not on a server.
+P.C.A. is a fictional parody and is not affiliated with any government agency. Scores and certificates are for entertainment only. Case records are stored in the current browser and are not uploaded to a server.
 
 ## Challenge pitch
 
@@ -40,4 +49,4 @@ The Procrastination Certification Authority is a ridiculously over-engineered pl
 
 ## Build in public
 
-When sharing a demo, tag **@gdgmad** and link to this repository. Please only claim features you have tested.
+When sharing your demo, tag **@gdgmad** and link to this repository. Only claim features you have tested.
