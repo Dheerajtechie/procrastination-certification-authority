@@ -1,4 +1,4 @@
-name: Test and deploy to GitHub Pages
+name: Test application
 
 on:
   push:
@@ -7,16 +7,10 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
 
 jobs:
   test:
-    name: Smoke-test the application
+    name: Application smoke tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,27 +19,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Validate HTML, JavaScript, and app wiring
+      - name: Test application behavior
         run: node scripts/smoke-test.mjs
-
-  deploy:
-    name: Deploy static website
-    needs: test
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - name: Upload website files
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: "."
-      - name: Publish website
-        id: deployment
-        uses: actions/deploy-pages@v4
