@@ -12,7 +12,7 @@ const uniqueIds = new Set(ids);
 assert.equal(ids.length, uniqueIds.size, "HTML must not contain duplicate IDs");
 const scripts = [...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)].map((m) => m[1]).filter((s) => s.trim());
 assert.equal(scripts.length, 1, "expected one self-contained application script");
-for (const [i, source] of scripts.entries()) new Script(source, { filename: \`index.html:inline-script-\${i + 1}\` });
+for (const [i, source] of scripts.entries()) new Script(source, { filename: `index.html:inline-script-${i + 1}` });
 
 const referencedIds = [...html.matchAll(/\$\(["']([^"']+)["']\)/g)].map((m) => m[1]);
 const missingIds = [...new Set(referencedIds.filter((id) => !uniqueIds.has(id)))];
@@ -22,12 +22,12 @@ for (const feature of [
   "claimForm", "randomExcuseBtn", "viewCertificateBtn", "downloadCertificateBtn",
   "downloadSvgBtn", "downloadSvgInlineBtn", "exportArchiveBtn", "clearHistoryBtn",
   "appealBtn", "historyList", "resultReady", "certificate"
-]) assert.ok(uniqueIds.has(feature), \`required feature element is missing: \${feature}\`);
+]) assert.ok(uniqueIds.has(feature), `required feature element is missing: ${feature}`);
 
 for (const behavior of [
   "scoreClaim", "renderResult", "renderHistory", "downloadCertificateSvg",
   "exportArchive", "printCertificate", "openAppeal"
-]) assert.ok(html.includes(\`function \${behavior}(\`), \`required behavior is missing: \${behavior}\`);
+]) assert.ok(html.includes(`function ${behavior}(`), `required behavior is missing: ${behavior}`);
 
 assert.match(html, /@media\s*\(max-width:/, "mobile responsive styles are required");
 assert.match(html, /@media\s*print/, "print styles are required");
@@ -122,4 +122,4 @@ getElement("clearHistoryBtn").dispatch("click");
 assert.equal(confirmCalls, 1, "archive clearing must ask for confirmation");
 assert.equal(JSON.parse(storage.get("pca_cases_v1")).length, 0, "clearing archive must remove stored cases");
 assert.equal(getElement("resultReady").classList.contains("hidden"), true, "clearing archive must reset the result panel");
-console.log(\`PCA smoke tests passed: \${ids.length} unique IDs; syntax, DOM wiring, claim submission, score, persistence, SVG download, JSON export, printing, appeals, and archive clearing all passed.\`);
+console.log(`PCA smoke tests passed: ${ids.length} unique IDs; syntax, DOM wiring, claim submission, score, persistence, SVG download, JSON export, printing, appeals, and archive clearing all passed.`);
