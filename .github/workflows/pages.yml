@@ -1,4 +1,4 @@
-name: Deploy static site to GitHub Pages
+name: Test and deploy to GitHub Pages
 
 on:
   push:
@@ -15,7 +15,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  test:
+    name: Smoke-test the application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate HTML, JavaScript, and app wiring
+        run: node scripts/smoke-test.mjs
+
   deploy:
+    name: Deploy static website
+    needs: test
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -23,12 +38,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Configure Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Upload static files
+      - name: Upload website files
         uses: actions/upload-pages-artifact@v3
         with:
           path: "."
-      - name: Deploy to GitHub Pages
+      - name: Publish website
         id: deployment
         uses: actions/deploy-pages@v4
