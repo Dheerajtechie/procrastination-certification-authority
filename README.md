@@ -8,9 +8,9 @@ A self-contained parody app for the GDG MAD **Dumb Ideas Challenge**. File a cla
 
 After the GitHub Pages workflow succeeds, visit:
 
-**https://dheerajtechie.github.io/procrastination-certification-authority/**
+**https://procrastination-certification-authority-dheerajtechies-projects.vercel.app/**
 
-If that URL is not live yet, open the repository's **Actions** tab and inspect the latest **Test and deploy to GitHub Pages** run. A green run means the website deployment completed; a failed run includes logs explaining what needs attention.
+The production deployment is hosted on Vercel and automatically updates when changes are pushed to `main`. The GitHub Actions workflow runs application smoke tests independently.
 
 ## Run locally
 
@@ -38,10 +38,10 @@ No package installation, API key, server, or build command is required.
 
 The included GitHub Actions workflow automatically smoke-tests the app and deploys it to GitHub Pages when code is pushed to `main`.
 
-1. Open **Settings → Pages** in this repository.
-2. Set **Build and deployment → Source** to **GitHub Actions**.
-3. Open the **Actions** tab and watch **Test and deploy to GitHub Pages**.
-4. Once the run is green, open the live demo link above.
+1. Open the [Vercel project](https://vercel.com/dheerajtechies-projects/procrastination-certification-authority).
+2. Confirm the GitHub repository is connected and `main` is the production branch.
+3. Push changes to `main`; Vercel builds and publishes them automatically.
+4. Check the [GitHub Actions test run](https://github.com/Dheerajtechie/procrastination-certification-authority/actions) for the smoke-test result.
 
 The workflow first checks JavaScript syntax, required page elements, duplicate HTML IDs, and wiring to expected features. Deployment only proceeds if these checks pass.
 
